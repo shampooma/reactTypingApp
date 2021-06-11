@@ -12,20 +12,23 @@ const Header = (props) => {
         {/* <Nav className="mr-auto"> */}
         <Row style={{ width: "100%" }}>
             <Col xs={2}><Navbar.Brand onClick={() => setTab(0)} > Home</Navbar.Brand>
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" /></Col>
-            <Col xs={8}><Navbar.Collapse id="responsive-navbar-nav">
-            <div className="d-flex justify-content-center" style={{ width: "100%" }}>
-                <div>
+            </Col>
+            <Col xs={8}>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse id="responsive-navbar-nav">
+                    <div className="d-flex justify-content-center" style={{ width: "100%" }}>
+                        <div>
+                            <Nav.Link onClick={() => setTab(1)}>About</Nav.Link>
+                        </div>
+                        <div>
+                            <Nav.Link onClick={() => setTab(2)}>No Quote</Nav.Link>
+                        </div>
+                        <div>
+                            <Nav.Link onClick={() => setTab(3)}>Number Typing</Nav.Link>
+                        </div>
+                    </div>
 
-                    <Nav.Link onClick={() => setTab(1)}>About</Nav.Link>
-                </div>
-                <div>
-                    <Nav.Link onClick={() => setTab(2)}>Contact</Nav.Link>
-
-                </div>
-                </div>
-
-            </Navbar.Collapse>
+                </Navbar.Collapse>
             </Col>
             <Col xs={2}><h1>hi</h1></Col>
         </Row>

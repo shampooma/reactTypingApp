@@ -6,9 +6,11 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Home from './components/Home';
 import About from './components/Ａｂｏｕｔ/About';
-import Contact from './components/Ｎｏ　Ｑｕｏｔｅ/Contact';
+import NoQuote from './components/Ｎｏ　Ｑｕｏｔｅ/NoQuote';
 import Header from './components/Header';
-import Row from 'react-bootstrap/Row'
+import Footer from './components/Footer';
+import NumberTyping from './components/Ｎｕｍｂｅｒ/Number typing';
+import Row from 'react-bootstrap/Row';
 
 
 function App() {
@@ -17,13 +19,15 @@ function App() {
   let components = [
     <Home />,
     <About />,
-    <Contact />
+    <NoQuote />,
+    <NumberTyping />
   ]
 
   return (
     <div>
       <Header setTab={setTab} />
       {components[tab]}
+      <Footer />
     </div>
   );
 }
