@@ -17,13 +17,12 @@ const Header = (props) => {
         }
     };
 
-    return (<Navbar className="headermain"  id="navbar" fixed="top" collapseOnSelect expand="lg" style={{ padding: "10px" }}>
-        <Nav style={{width:"100%"}}>
+    return (<Navbar className="headermain" id="navbar" sticky="top" collapseOnSelect expand="lg" style={{ padding: "10px" }}>
+        <Nav style={{ width: "100%" }}>
             <Row className="justify-content-lg-between  " style={{ width: "100%" }}>
                 <Col xs={12} lg={2}>
                     <div className="d-flex justify-content-between">
                         <Navbar.Brand onClick={() => setTab(0)} > Home</Navbar.Brand>
-
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     </div>
                 </Col>
@@ -40,7 +39,6 @@ const Header = (props) => {
                                 <Nav.Link onClick={() => setTab(3)}>Number Typing</Nav.Link>
                             </div>
                         </div>
-
                     </Navbar.Collapse>
                 </Col>
                 <Col xs={0} lg={2}></Col>

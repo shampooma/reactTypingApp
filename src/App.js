@@ -26,8 +26,8 @@ function App() {
   return (
     <div>
       <Header setTab={setTab} />
-      <div className="container" style={{paddingTop:"75px"}}>{components[tab]}</div>
-      
+      <div className="container" >{components[tab]}</div>
+
       <Footer />
     </div>
   );
