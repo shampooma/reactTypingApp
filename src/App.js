@@ -5,8 +5,8 @@ import React, { Component } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Home from './components/Home';
-import About from './components/About';
-import Contact from './components/Contact';
+import About from './components/Ａｂｏｕｔ/About';
+import Contact from './components/Ｎｏ　Ｑｕｏｔｅ/Contact';
 import Header from './components/Header';
 import Row from 'react-bootstrap/Row'
 
