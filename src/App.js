@@ -9,7 +9,7 @@ import About from './components/Ａｂｏｕｔ/About';
 import NoQuote from './components/Ｎｏ　Ｑｕｏｔｅ/NoQuote';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import NumberTyping from './components/Ｎｕｍｂｅｒ/Number typing';
+import NumberTyping_displaySampleText from './components/Ｎｕｍｂｅｒ/Number typing';
 import Row from 'react-bootstrap/Row';
 
 
@@ -20,13 +20,14 @@ function App() {
     <Home />,
     <About />,
     <NoQuote />,
-    <NumberTyping />
+    <NumberTyping_displaySampleText />
   ]
 
   return (
     <div>
       <Header setTab={setTab} />
-      {components[tab]}
+      <div className="container" style={{paddingTop:"75px"}}>{components[tab]}</div>
+      
       <Footer />
     </div>
   );

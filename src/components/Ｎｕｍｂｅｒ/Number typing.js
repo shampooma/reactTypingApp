@@ -1,9 +1,27 @@
 
 import React from 'react';
 
-function NumberTyping() {
-    return (<h1>NumberTyping</h1>)
-}
+function NumberTyping_displaySampleText(){
 
-export default NumberTyping;
+
+	//function 1
+	// function genNumbers() {		
+		
+	// console.log(generatedNumber);
+		
+	// }
+	// genNumbers();
+
+
+
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	//html (i.e. print on the Numer-typing page)
+
+
+
+
+}
+export default NumberTyping_displaySampleText
 
