@@ -24,10 +24,9 @@ function App() {
   ]
 
   return (
-    <div>
+    <div style={{ backgroundImage: "url(/tanner-geringer-zSOWQufnxX0-unsplash.jpg)" }}>
       <Header setTab={setTab} />
       <div className="container" >{components[tab]}</div>
-
       <Footer />
     </div>
   );

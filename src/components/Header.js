@@ -20,7 +20,7 @@ const Header = (props) => {
     return (<Navbar className="headermain" id="navbar" sticky="top" collapseOnSelect expand="lg" style={{ padding: "10px" }}>
         <Nav style={{ width: "100%" }}>
             <Row className="justify-content-lg-between  " style={{ width: "100%" }}>
-                <Col xs={12} lg={2}>
+                <Col xs={12} lg={2} style={{marginBottom: "10px"}}>
                     <div className="d-flex justify-content-between">
                         <Navbar.Brand onClick={() => setTab(0)} > Home</Navbar.Brand>
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

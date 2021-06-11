@@ -3,3 +3,12 @@
     background-color: #00000000;
     color: #000000;
 }
+
+.headermain a {
+    padding: 10px !important;
+    border-radius: 3px;
+}
+
+.headermain a:hover {
+    background-color: #00000033;
+}
