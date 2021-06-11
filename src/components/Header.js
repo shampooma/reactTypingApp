@@ -4,11 +4,20 @@ import Nav from 'react-bootstrap/Nav';
 // import Header from './components/Header';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import './Header.css';
 
 const Header = (props) => {
     const { setTab } = props;
 
-    return (<Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" style={{ padding: "10px" }}>
+    window.onscroll = () => {
+        if (window.scrollY == 0) {
+            document.querySelector('#navbar').classList.remove('navbar-dark', 'bg-dark')
+        } else {
+            document.querySelector('#navbar').classList.add('navbar-dark', 'bg-dark')
+        }
+    };
+
+    return (<Navbar className="headermain"  id="navbar" fixed="top" collapseOnSelect expand="lg" style={{ padding: "10px" }}>
         <Nav style={{width:"100%"}}>
             <Row className="justify-content-lg-between  " style={{ width: "100%" }}>
                 <Col xs={12} lg={2}>
