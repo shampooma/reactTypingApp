@@ -11,19 +11,25 @@ const Header = (props) => {
     const { setTab } = props;
 
     window.onscroll = () => {
-        if (window.scrollY === 0 && document.querySelector('#toggleCollapseButton').classList.contains('collapsed')) {
-            document.querySelector('#navbar').classList.remove('navbar-dark', 'bg-dark')
-        } else {
-            document.querySelector('#navbar').classList.add('navbar-dark', 'bg-dark')
-        }
+        changeHeaderBackgroundWithoutUsingHambergar()
     };
 
-    useEffect(() => {
+    function changeHeaderBackgroundWithoutUsingHambergar() {
         if (window.scrollY === 0 && document.querySelector('#toggleCollapseButton').classList.contains('collapsed')) {
             document.querySelector('#navbar').classList.remove('navbar-dark', 'bg-dark')
         } else {
             document.querySelector('#navbar').classList.add('navbar-dark', 'bg-dark')
         }
+    }
+
+    useEffect(() => {
+        changeHeaderBackgroundWithoutUsingHambergar()
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.classList.contains('headermain') && !document.querySelector('.headermain').contains(e.target) && !document.querySelector('#toggleCollapseButton').classList.contains('collapsed')) {
+                document.querySelector('#toggleCollapseButton').click()
+            }
+        })
     }, [])
 
     return (
@@ -63,9 +69,9 @@ const Header = (props) => {
 
                 </Nav>
             </Navbar>
-            <Navbar class="invisible headermain" collapseOnSelect expand="lg" style={{ padding: "10px" }}>
+            <Navbar className="invisible headermain" collapseOnSelect expand="lg" style={{ padding: "10px" }}>
                 <Nav style={{ width: "100%" }}>
-                    <Row className="justify-content-lg-between  " style={{ width: "100%" }}>
+                    <Row className="justify-content-lg-between" style={{ width: "100%" }}>
                         <Col xs={12} lg={2} style={{ marginBottom: "10px" }}>
                             <div className="d-flex justify-content-between">
                                 <Navbar.Brand> Home</Navbar.Brand>
