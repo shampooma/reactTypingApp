@@ -1,6 +1,6 @@
 
 import React, { useEffect } from 'react';
-
+import './Number typing.css'
 function NumberTyping_displaySampleText(){
 
 

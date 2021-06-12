@@ -1,4 +1,5 @@
 import './App.css';
+
 import { useState } from 'react';
 import React from 'react';
 import Home from './components/Home';
@@ -20,7 +21,7 @@ function App() {
   ]
 
   return (
-    <div style={{backgroundImage: "url(/tanner-geringer-zSOWQufnxX0-unsplash.jpg)" }}>
+    <div style={{backgroundImage: "url(/tanner-geringer-zSOWQufnxX0-unsplash.jpg)" , height: "1200px" }}>
       <Header setTab={setTab} />
       <div className="container">{components[tab]}</div>
       <Footer />
