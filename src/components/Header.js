@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 // import Header from './components/Header';
@@ -6,24 +6,42 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './Header.css';
 
+
 const Header = (props) => {
     const { setTab } = props;
 
     window.onscroll = () => {
-        if (window.scrollY == 0) {
+        if (window.scrollY == 0 && document.querySelector('#toggleCollapseButton').classList.contains('collapsed')) {
             document.querySelector('#navbar').classList.remove('navbar-dark', 'bg-dark')
         } else {
             document.querySelector('#navbar').classList.add('navbar-dark', 'bg-dark')
         }
     };
 
-    return (<Navbar className="headermain" id="navbar" sticky="top" collapseOnSelect expand="lg" style={{ padding: "10px" }}>
+    useEffect(() => {
+        if (window.scrollY == 0 && document.querySelector('#toggleCollapseButton').classList.contains('collapsed')) {
+            document.querySelector('#navbar').classList.remove('navbar-dark', 'bg-dark')
+        } else {
+            document.querySelector('#navbar').classList.add('navbar-dark', 'bg-dark')
+        }
+    }, [])
+
+    return (<Navbar className="headermain" id="navbar" fixed="top" collapseOnSelect expand="lg" style={{ padding: "10px" }}>
         <Nav style={{ width: "100%" }}>
             <Row className="justify-content-lg-between  " style={{ width: "100%" }}>
-                <Col xs={12} lg={2} style={{marginBottom: "10px"}}>
+                <Col xs={12} lg={2} style={{ marginBottom: "10px" }}>
                     <div className="d-flex justify-content-between">
-                        <Navbar.Brand onClick={() => setTab(0)} > Home</Navbar.Brand>
-                        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                        <Navbar.Brand onClick={() => setTab(0)}> Home</Navbar.Brand>
+                        <Navbar.Toggle id="toggleCollapseButton" onClick={() => {
+                            console.log(document.querySelector('#toggleCollapseButton').classList)
+                            if (window.scrollY == 0 && !document.querySelector('#toggleCollapseButton').classList.contains('collapsed')) {
+                                document.querySelector('#navbar').classList.remove('navbar-dark', 'bg-dark')
+                                console.log('not collapsed')
+                            } else {
+                                console.log('collapsed')
+                                document.querySelector('#navbar').classList.add('navbar-dark', 'bg-dark')
+                            }
+                        }} aria-controls="responsive-navbar-nav" />
                     </div>
                 </Col>
                 <Col xs={12} lg={8}>
