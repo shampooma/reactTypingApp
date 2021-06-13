@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './NoQuote.css';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -8,12 +8,13 @@ const timingInterval = 1000;
 const autoPauseTime = 2000;
 
 // variables
-let paused = true;
-let previousTimeUsed = 0;
-let totalWords = 0;
-let restartTime = 0;
-let lastInputTime = 0;
-let timerTimeout = null;
+let paused;
+let previousTimeUsed;
+let totalWords;
+let currentWords;
+let restartTime;
+let lastInputTime;
+let timerTimeout;
 
 // test
 let longestTimeForInput = 0
@@ -24,14 +25,32 @@ function NoQuote() {
     const [displayWPM, setDisplayWPM] = useState('- -');
     const [displayWords, setDisplayWords] = useState('- -');
 
+    useEffect(() => {
+        paused = true;
+        previousTimeUsed = 0;
+        totalWords = 0;
+        currentWords = 0;
+        restartTime = 0;
+        lastInputTime = 0;
+        timerTimeout = null;
+    }, [])
+
     function onInput(e) {
+        e.preventDefault();
         lastInputTime = Date.now();
         let newText = e.target.value ? e.target.value : "";
-        let matchArray = newText.match(/[\w'][^\w']/g)
-        let newTotalWords = matchArray ? matchArray.length : 0;
 
-        totalWords = newTotalWords;
-        setDisplayWords(totalWords)
+        if (newText.length == 0) {
+            totalWords += currentWords;
+            currentWords = 0;
+        } else {
+            let matchArray = newText.match(/[\w'][^\w']/g)
+            let newTotalWords = matchArray ? matchArray.length : 0;
+    
+            currentWords = newTotalWords;
+        }
+        setDisplayWords(totalWords + currentWords)
+
         if (paused) {
             paused = false;
             restartTime = lastInputTime;
@@ -52,7 +71,7 @@ function NoQuote() {
             timerTimeout = setTimeout(timer, timingInterval);
             let totalTimeUsed = previousTimeUsed + Date.now() - restartTime;
             if (totalTimeUsed > 0) {
-                setDisplayWPM(Math.round(totalWords / totalTimeUsed * 600000) / 10)
+                setDisplayWPM(Math.round((totalWords + currentWords) / totalTimeUsed * 600000) / 10)
             }
         }
     }
@@ -61,7 +80,7 @@ function NoQuote() {
         previousTimeUsed += lastInputTime - restartTime;
         paused = true;
         clearTimeout(timerTimeout);
-        let wpm = previousTimeUsed > 0 ? Math.round(totalWords / previousTimeUsed * 600000) / 10 : ' - -';
+        let wpm = previousTimeUsed > 0 ? Math.round((totalWords + currentWords) / previousTimeUsed * 600000) / 10 : ' - -';
         setDisplayWPM(wpm);
         lastInputTime = 0;
         restartTime = 0;
