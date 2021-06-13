@@ -26,17 +26,23 @@ const Header = (props) => {
         }
     }
 
+    function changeTab(n) {
+        let toggleCollapseButton = document.querySelector('#toggleCollapseButton');
+        if (!toggleCollapseButton.classList.contains('collapsed')) {
+            toggleCollapseButton.click()
+
+        }
+        setTab(n);
+    }
+
     useEffect(() => {
         changeHeaderBackgroundWithoutUsingHambergar()
 
         document.addEventListener('mousedown', closeHeader)
-
         document.addEventListener('touchstart', closeHeader)
 
-
-
         window.addEventListener('scroll', () => {
-        
+
             changeHeaderBackgroundWithoutUsingHambergar()
         });
     }, [])
@@ -45,10 +51,10 @@ const Header = (props) => {
         <div>
             <Navbar className="headermain" id="navbar" fixed="top" collapseOnSelect expand="lg" style={{ padding: "10px" }}>
                 <Nav style={{ width: "100%" }}>
-                    <Row className="justify-content-lg-between  " style={{ width: "100%", margin: "0"}}>
+                    <Row className="justify-content-lg-between  " style={{ width: "100%", margin: "0" }}>
                         <Col xs={12} lg={2} style={{ marginBottom: "10px" }}>
                             <div className="d-flex justify-content-between">
-                                <Navbar.Brand onClick={() => setTab(0)}> Home</Navbar.Brand>
+                                <Navbar.Brand onClick={() => changeTab(0)}> Home</Navbar.Brand>
                                 <Navbar.Toggle id="toggleCollapseButton" onClick={() => {
                                     if (window.scrollY <= 0 && !document.querySelector('#toggleCollapseButton').classList.contains('collapsed')) {
                                         document.querySelector('#navbar').classList.remove('navbar-dark', 'bg-dark')
@@ -62,13 +68,13 @@ const Header = (props) => {
                             <Navbar.Collapse id="responsive-navbar-nav">
                                 <div className="d-flex flex-column flex-lg-row justify-content-center" style={{ width: "100%" }}>
                                     <div>
-                                        <Nav.Link onClick={() => setTab(1)}>About</Nav.Link>
+                                        <Nav.Link onClick={() => changeTab(1)}>About</Nav.Link>
                                     </div>
                                     <div>
-                                        <Nav.Link onClick={() => setTab(2)}>No Quote</Nav.Link>
+                                        <Nav.Link onClick={() => changeTab(2)}>No Quote</Nav.Link>
                                     </div>
                                     <div>
-                                        <Nav.Link onClick={() => setTab(3)}>Number Typing</Nav.Link>
+                                        <Nav.Link onClick={() => changeTab(3)}>Number Typing</Nav.Link>
                                     </div>
                                 </div>
                             </Navbar.Collapse>
