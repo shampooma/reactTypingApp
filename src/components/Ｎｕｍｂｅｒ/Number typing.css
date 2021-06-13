@@ -1,0 +1,10 @@
+#div_displayGeneratedNumber {
+    /* the did itself */
+    margin: auto;
+
+    /* the text itself */
+    text-align: center;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-size: 50px;
+    font-weight: bold;
+}
