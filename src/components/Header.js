@@ -6,10 +6,10 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './Header.css';
 
+let currentPage = 0;
 
 const Header = (props) => {
-    const { setTab } = props;
-
+    const {changeScrollBarColorByScroll} = props;
     function changeHeaderBackgroundWithoutUsingHambergar() {
         if (window.scrollY <= 0 && document.querySelector('#toggleCollapseButton').classList.contains('collapsed')) {
             document.querySelector('#navbar').classList.remove('navbar-dark', 'bg-dark')
@@ -28,11 +28,16 @@ const Header = (props) => {
 
     function changeTab(n) {
         let toggleCollapseButton = document.querySelector('#toggleCollapseButton');
+        let pages = document.querySelector('#pagesContainer').childNodes;
         if (!toggleCollapseButton.classList.contains('collapsed')) {
             toggleCollapseButton.click()
 
         }
-        setTab(n);
+        
+        pages[currentPage].classList.add('notCurrentTab')
+        pages[n].classList.remove('notCurrentTab')
+        currentPage = n;
+        changeScrollBarColorByScroll();
     }
 
     useEffect(() => {
@@ -46,7 +51,7 @@ const Header = (props) => {
             changeHeaderBackgroundWithoutUsingHambergar()
         });
     }, [])
-
+    console.log('rerender')
     return (
         <div>
             <Navbar className="headermain" id="navbar" fixed="top" collapseOnSelect expand="lg" style={{ padding: "10px" }}>
@@ -54,7 +59,7 @@ const Header = (props) => {
                     <Row className="justify-content-lg-between  " style={{ width: "100%", margin: "0" }}>
                         <Col xs={12} lg={2} style={{ marginBottom: "10px" }}>
                             <div className="d-flex justify-content-between">
-                                <Navbar.Brand onClick={() => changeTab(0)}> Home</Navbar.Brand>
+                                <Navbar.Brand style={{ cursor: "pointer", ":hover": {backgroundColor: "blue"} }} onClick={() => changeTab(0)}> Home</Navbar.Brand>
                                 <Navbar.Toggle id="toggleCollapseButton" onClick={() => {
                                     if (window.scrollY <= 0 && !document.querySelector('#toggleCollapseButton').classList.contains('collapsed')) {
                                         document.querySelector('#navbar').classList.remove('navbar-dark', 'bg-dark')

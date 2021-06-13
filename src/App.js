@@ -1,6 +1,6 @@
 import './App.css';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import React from 'react';
 import Home from './components/Home';
 import About from './components/Ａｂｏｕｔ/About';
@@ -11,8 +11,6 @@ import NumberTyping_displaySampleText from './components/Ｎｕｍｂｅｒ/Numb
 
 
 function App() {
-  const [tab, setTab] = useState(0);
-
   let components = [
     <Home />,
     <About />,
@@ -20,7 +18,11 @@ function App() {
     <NumberTyping_displaySampleText />
   ]
 
-  window.addEventListener('scroll', (e) => {
+  window.addEventListener('scroll', changeScrollBarColorByScroll)
+
+  useEffect(changeScrollBarColorByScroll, [])
+
+  function changeScrollBarColorByScroll() {
     let scrollHeight = document.documentElement.scrollHeight;
     let clientHeight = document.documentElement.clientHeight;
     let scrollY = window.scrollY;
@@ -31,14 +33,19 @@ function App() {
     } else {
       document.querySelector('body').classList.add('bg-dark')
     }
-  })
+  }
 
   return (
     <div id="app" >
-      <Header setTab={setTab} />
-      <div className="container">{components[tab]}</div>
+      <Header changeScrollBarColorByScroll={changeScrollBarColorByScroll}/>
+      <div id="pagesContainer" className="container">
+        {components.map((element, i) => {
+          return (<div key={i} className={i != 0 ? "notCurrentTab" : ""}>
+            {element}
+          </div>)
+        })}      
+      </div>
       <Footer />
-      {/* <div  style={{height: "100px", width: "100px", backgroundColor: "red", position: "fixed", bottom: "-100", "zIndex": "-10"}}></div> */}
     </div>
   );
 }

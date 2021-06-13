@@ -5,3 +5,7 @@
   flex-direction: column;
   background-color: #e3fcff;
 }
+
+.notCurrentTab {
+  display: none;
+}

@@ -11,6 +11,9 @@
     border-radius: 3px;
 }
 
-.headermain a:hover {
+.headermain a:hover{
     background-color: #00000033;
 }
+
+/* .headermain .navbar-brand:hover {
+} */

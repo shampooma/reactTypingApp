@@ -33,6 +33,8 @@ function NoQuote() {
         restartTime = 0;
         lastInputTime = 0;
         timerTimeout = null;
+
+        document.querySelector('#testing').focus()
     }, [])
 
     function onInput(e) {
@@ -86,7 +88,7 @@ function NoQuote() {
         restartTime = 0;
         timerTimeout = null;
     }
-
+    console.log('initializing no quote')
     return (
         <div id="noQuote">
             <Row className="justify-content-center text-center">
@@ -107,6 +109,9 @@ function NoQuote() {
 
             </Row>
             <textarea onInput={onInput} onBlur={pauseFunction}></textarea>
+            <textarea id="testing" onInput={() => {
+                console.log('inputing')
+            }} style={{height: "0", width: "0", padding: "0", margin: "0"}}></textarea>
         </div>
     )
 }
