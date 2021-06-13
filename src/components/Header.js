@@ -10,38 +10,47 @@ import './Header.css';
 const Header = (props) => {
     const { setTab } = props;
 
-    window.onscroll = () => {
-        changeHeaderBackgroundWithoutUsingHambergar()
-    };
-
     function changeHeaderBackgroundWithoutUsingHambergar() {
-        if (window.scrollY === 0 && document.querySelector('#toggleCollapseButton').classList.contains('collapsed')) {
+        if (window.scrollY <= 0 && document.querySelector('#toggleCollapseButton').classList.contains('collapsed')) {
             document.querySelector('#navbar').classList.remove('navbar-dark', 'bg-dark')
         } else {
             document.querySelector('#navbar').classList.add('navbar-dark', 'bg-dark')
         }
     }
 
+    function closeHeader(e) {
+        let toggleCollapseButton = document.querySelector('#toggleCollapseButton');
+
+        if (!e.target.classList.contains('headermain') && !document.querySelector('.headermain').contains(e.target) && !toggleCollapseButton.classList.contains('collapsed')) {
+            toggleCollapseButton.click()
+        }
+    }
+
     useEffect(() => {
         changeHeaderBackgroundWithoutUsingHambergar()
 
-        document.addEventListener('click', (e) => {
-            if (!e.target.classList.contains('headermain') && !document.querySelector('.headermain').contains(e.target) && !document.querySelector('#toggleCollapseButton').classList.contains('collapsed')) {
-                document.querySelector('#toggleCollapseButton').click()
-            }
-        })
+        document.addEventListener('mousedown', closeHeader)
+
+        document.addEventListener('touchstart', closeHeader)
+
+
+
+        window.addEventListener('scroll', () => {
+        
+            changeHeaderBackgroundWithoutUsingHambergar()
+        });
     }, [])
 
     return (
         <div>
             <Navbar className="headermain" id="navbar" fixed="top" collapseOnSelect expand="lg" style={{ padding: "10px" }}>
                 <Nav style={{ width: "100%" }}>
-                    <Row className="justify-content-lg-between  " style={{ width: "100%" }}>
+                    <Row className="justify-content-lg-between  " style={{ width: "100%", margin: "0"}}>
                         <Col xs={12} lg={2} style={{ marginBottom: "10px" }}>
                             <div className="d-flex justify-content-between">
                                 <Navbar.Brand onClick={() => setTab(0)}> Home</Navbar.Brand>
                                 <Navbar.Toggle id="toggleCollapseButton" onClick={() => {
-                                    if (window.scrollY === 0 && !document.querySelector('#toggleCollapseButton').classList.contains('collapsed')) {
+                                    if (window.scrollY <= 0 && !document.querySelector('#toggleCollapseButton').classList.contains('collapsed')) {
                                         document.querySelector('#navbar').classList.remove('navbar-dark', 'bg-dark')
                                     } else {
                                         document.querySelector('#navbar').classList.add('navbar-dark', 'bg-dark')

@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Footer() {
-    return (<div style={{height: "500px", width: "100%", backgroundColor: "#828282", position: "absolute", bottom: "0px"}}>
+    return (<div id="footer" className="bg-dark" style={{height: "500px", width: "100%", marginTop: "auto", color: "#ffffff"}}>
         <h1>Footer</h1>
         </div>)
 }

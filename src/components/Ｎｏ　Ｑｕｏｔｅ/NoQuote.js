@@ -1,7 +1,12 @@
 import React from 'react';
+import './NoQuote.css';
 
 function NoQuote() {
-    return (<h1>NoQuote</h1>)
+    return (
+        <div id="noQuote">
+            <textarea></textarea>
+        </div>
+    )
 }
 
 export default NoQuote;

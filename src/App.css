@@ -1,0 +1,7 @@
+#app {
+  /* background-image: url(\tanner-geringer-zSOWQufnxX0-unsplash.jpg); */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #e3fcff;
+}
