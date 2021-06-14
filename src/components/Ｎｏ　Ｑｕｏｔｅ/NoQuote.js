@@ -4,8 +4,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 // params
-const timingInterval = 1000;
-const autoPauseTime = 2000;
+const timingInterval = 500;
+const autoPauseTime = 1000;
 
 // variables
 let paused;
@@ -42,7 +42,7 @@ function NoQuote() {
         lastInputTime = Date.now();
         let newText = e.target.value ? e.target.value : "";
 
-        if (newText.length == 0) {
+        if (newText.length === 0) {
             totalWords += currentWords;
             currentWords = 0;
         } else {
