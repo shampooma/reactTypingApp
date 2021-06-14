@@ -37,7 +37,6 @@ const Header = (props) => {
 
 
     function changeHeaderBackgroundWithoutUsingHambergar() {
-
         if (window.scrollY <= 0 && collapsed) {
             setOriginColor(true)
         } else {
@@ -107,7 +106,7 @@ const Header = (props) => {
                 fixed="top"
                 collapseOnSelect
                 expand="lg"
-                style={{ padding: "10px" }}>
+                style={{ padding: "10px 10px 0 10px" }}>
                 <Nav
                     style={{ width: "100%" }}>
                     <Row
@@ -173,7 +172,7 @@ const Header = (props) => {
 
                 </Nav>
             </Navbar>
-            <Navbar className="invisible headermain" collapseOnSelect expand="lg" style={{ padding: "10px" }}>
+            <Navbar className="invisible headermain" collapseOnSelect expand="lg" style={{ padding: "10px 10px 10px 10px" }}>
                 <Nav style={{ width: "100%" }}>
                     <Row className="justify-content-lg-between" style={{ width: "100%" }}>
                         <Col xs={12} lg={2} style={{ marginBottom: "10px" }}>
