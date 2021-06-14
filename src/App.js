@@ -12,8 +12,6 @@ import Footer from './components/Footer';
 import NumberTyping_displaySampleText from './components/Ｎｕｍｂｅｒ/Number typing';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-// import TabPanel from '@material-ui/core/TabPanel'
-import SimpleTabs from './test';
 
 
 function App() {
@@ -55,8 +53,6 @@ function App() {
         })}
       </div>
       <Footer />
-      <SimpleTabs />
-      <h1>hi</h1>
     </div>
   );
 }
