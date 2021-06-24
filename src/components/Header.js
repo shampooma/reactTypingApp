@@ -34,6 +34,26 @@ const Header = (props) => {
 
     const { classes, changeScrollBarColorByScroll } = props;
 
+    function toggleCollapseButtonOnClick(currentTabNumber) {
+        if (window.scrollY <= 0 && !collapsed) {
+            setOriginColor(true)
+        } else {
+            setOriginColor(false)
+        }
+        // setDisplayMobileLayout(mobileLayout)
+        if (collapsed) {
+            collapsed = false
+        } else {
+            collapsed = true
+            if (currentTabNumber > -1) {
+                let indicator = document.querySelector('#navbar .MuiTabs-indicator')
+                let currentTab = document.querySelector('#navbar .MuiTabs-flexContainer').childNodes[currentTabNumber]
+
+                indicator.style.height = currentTab.style.height;
+            }
+
+        }
+    }
 
 
     function changeHeaderBackgroundWithoutUsingHambergar() {
@@ -83,12 +103,10 @@ const Header = (props) => {
 
         window.addEventListener('resize', () => {
             if (window.innerWidth < 992 && !mobileLayout) {
-                console.log('upper')
                 mobileLayout = true
                 setDisplayMobileLayout(true);
                 changeHeaderBackgroundWithoutUsingHambergar()
             } else if (window.innerWidth >= 992 && mobileLayout) {
-                console.log('lower')
                 if (window.scrollY <= 0) {
                     setOriginColor(true)
                 }
@@ -106,7 +124,7 @@ const Header = (props) => {
                 fixed="top"
                 collapseOnSelect
                 expand="lg"
-                style={{ padding: "10px 10px 0 10px" }}>
+                style={{ padding: `10px 10px ${mobileLayout ? "10px" : "0"} 10px` }}>
                 <Nav
                     style={{ width: "100%" }}>
                     <Row
@@ -125,15 +143,7 @@ const Header = (props) => {
                                     onClick={() => changeTab(null, -1)}> Home</Navbar.Brand>
                                 <Navbar.Toggle
                                     id="toggleCollapseButton"
-                                    onClick={() => {
-                                        if (window.scrollY <= 0 && !collapsed) {
-                                            setOriginColor(true)
-                                        } else {
-                                            setOriginColor(false)
-                                        }
-                                        setDisplayMobileLayout(displayMobileLayout)
-                                        collapsed = !collapsed
-                                    }}
+                                    onClick={() => toggleCollapseButtonOnClick(tabNumber)}
                                     aria-controls="responsive-navbar-nav" />
                             </div>
                         </Col>
@@ -146,7 +156,7 @@ const Header = (props) => {
                                     className="d-flex flex-column flex-lg-row justify-content-center"
                                     style={{ width: "100%" }}>
                                     <Tabs
-                                        {...displayMobileLayout && {orientation: "vertical"}}
+                                        {...displayMobileLayout && { orientation: "vertical" }}
                                         style={{ ...(displayMobileLayout && { width: "100%" }) }}
                                         classes={{
                                             indicator: (originColor ? classes.indicatorOrigin : classes.indicatorNonOrigin)
@@ -156,7 +166,7 @@ const Header = (props) => {
                                         {['About', 'No Quote', 'Number Typing'].map(string => {
                                             return (
                                                 <Tab
-                                                    style={{ ...(!originColor && { color: "#fff" }) }}
+                                                    style={{ ...(displayMobileLayout && { color: (originColor ? "#00000000" : "#ffffff") }) }}
                                                     classes={{
                                                         root: (displayMobileLayout && classes.tabButtonNonOrigin),
                                                         wrapper: (displayMobileLayout && classes.tabLabelNonOrigin)

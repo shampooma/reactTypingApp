@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 
 // params
 const timingInterval = 500;
-const autoPauseTime = 15000;
+const autoPauseTime = 1500;
 
 // variables
 let paused;
