@@ -7,7 +7,7 @@ function NumberTyping_displaySampleText() {
 
 	//function 1
 
-///jasddkfjfgaskfgfkuasgdfuyagsuydfgausdjgasdhjfguaysdgyaegrufyaudga
+///jasddkfjfgaskfgfkuasgdfuyagsuydfgausdjgasdhjfguaysdgyaegrufyaudgaasfdsdg
 
 
 	//functions after return 
