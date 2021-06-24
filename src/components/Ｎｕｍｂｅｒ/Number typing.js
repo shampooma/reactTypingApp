@@ -3,7 +3,7 @@ import './Number typing.css'
 
 
 function NumberTyping_displaySampleText() {
-
+	var SampleTextArray = []
 
 	//function 1
 
@@ -26,7 +26,7 @@ function NumberTyping_displaySampleText() {
 		//useEffect function 1: gen 15 num
 		function genAndDisplayNumWhenInitialize() {
 			//gen 10 numbers
-			for (var i = 0; i < 15; i++) {
+			for (var i = 0; i < 6; i++) {
 				var randomDicimalToDecideDigits = Math.random();
 				if (randomDicimalToDecideDigits < 0.1) { decidedDigits = 100 }
 				else if (randomDicimalToDecideDigits >= 0.1 && randomDicimalToDecideDigits < 0.2) { decidedDigits = 1000 }
@@ -39,6 +39,7 @@ function NumberTyping_displaySampleText() {
 				//gen 10 numbers: print the number (each number add new number & linebreak)
 				document.getElementById("div_displayGeneratedNumber").innerHTML += generatedNumber + "<br>";
 			}
+			//document.getElementById("div_displayGeneratedNumber").innerHTML += "ma zi yeung";
 		}
 		genAndDisplayNumWhenInitialize();
 
@@ -57,26 +58,35 @@ function NumberTyping_displaySampleText() {
 					else if (randomDicimalToDecideDigits2 >= 0.2 && randomDicimalToDecideDigits2 < 0.5) { decidedDigits = 10000 }
 					else if (randomDicimalToDecideDigits2 >= 0.5 && randomDicimalToDecideDigits2 < 0.8) { decidedDigits = 100000 }
 					else { decidedDigits = 1000000 };
-					generatedNumber = Math.floor(Math.random() * decidedDigits);
+					generatedNumber = Math.floor(Math.random() * decidedDigits).toString();
 					//gen a single number: print & add the new gened number
-					document.getElementById("div_displayGeneratedNumber").innerHTML += generatedNumber + "<br>";
+					SampleTextArray.push(generatedNumber)
+					console.log(SampleTextArray)
+					let temp = "";
+					for (let i = 0; i < generatedNumber.length; i++) {
+						temp += "<span>" + generatedNumber[i] + '</span>'
+					}
+					document.getElementById("div_displayGeneratedNumber").innerHTML += "<span>" + temp + "</span><br>";
 
+					//press enter will scroll TO 70.5 * fromItoInfiinity
 					function scroll (){
-						
 						from1toInfinity = from1toInfinity + 1;
 						document.getElementById("div_displayGeneratedNumber").scroll(0, from1toInfinity * 70.5);
 						console.log(from1toInfinity);
 					}
 					scroll();
 				}
+
 			})
 		}
 		pressEnterGenAndAddOneNumber();
 
+
 		//useEffect function 3
 		(() => {
 			var putNumOnSampleText = document.getElementById("div_displayGeneratedNumber");
-			var SampleTextArray = putNumOnSampleText.innerHTML.split("<br>");
+			SampleTextArray = putNumOnSampleText.innerHTML.split("<br>");
+			SampleTextArray = SampleTextArray.slice(0, SampleTextArray.length - 1)
 			var textArea = document.querySelector("#numTextArea");
 			//var Wpm = document.querySelectorAll("#wpm")[1];
 			//var Error = document.querySelectorAll("#errors")[1];
@@ -97,11 +107,14 @@ function NumberTyping_displaySampleText() {
 
 			var insert = ""
 			for (var i = 0; i < SampleTextArray.length; i++) {
-				insert += "<span>";
-				for (var j = 0; j < SampleTextArray[i].length; j++) {
-					insert += "<span>" + SampleTextArray[i][j] + "</span>";
+				if (SampleTextArray[i].length > 0) {
+						insert += "<span>";
+						for (var j = 0; j < SampleTextArray[i].length; j++) {
+							insert += "<span>" + SampleTextArray[i][j] + "</span>";
+						}
+						insert += "</span><br>";
+
 				}
-				insert += "</span><br>";
 			}
 
 			Error.textContent = "123";
@@ -122,7 +135,7 @@ function NumberTyping_displaySampleText() {
 					if (SampleTextArray[HighLightElementRow] && SampleTextArray[HighLightElementRow][HighLightElementColumn]) {
 						putNumOnSampleText.children[HighLightElementRow * 2].children[HighLightElementColumn].style.backgroundColor = "";
 					} else {
-						putNumOnSampleText.children[HighLightElementRow * 2].removeChild(putNumOnSampleText.children[HighLightElementRow * 2].children[HighLightElementColumn]);
+							putNumOnSampleText.children[HighLightElementRow * 2].removeChild(putNumOnSampleText.children[HighLightElementRow * 2].children[HighLightElementColumn]);
 					}
 
 					var currentValue = textArea.value;
