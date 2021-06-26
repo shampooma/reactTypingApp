@@ -19,13 +19,23 @@ let timerTimeout;
 // test
 let longestTimeForInput = 0
 
+let setting = {
+    test: "1"
+}
+
+export {setting}
 
 
-function NoQuote() {
+function NoQuote(props) {
+    console.log('noQuote rendered')
     const [displayWPM, setDisplayWPM] = useState('- -');
     const [displayWords, setDisplayWords] = useState('- -');
+    const { settings, setSettings } = props;
+
+    let test = settings['noQuoteSetting']['test']
 
     useEffect(() => {
+        console.log('noQuoote used effect')
         paused = true;
         previousTimeUsed = 0;
         totalWords = 0;
@@ -33,8 +43,6 @@ function NoQuote() {
         restartTime = 0;
         lastInputTime = 0;
         timerTimeout = null;
-
-        document.querySelector('#testing').focus()
     }, [])
 
     function onInput(e) {
@@ -48,7 +56,7 @@ function NoQuote() {
         } else {
             let matchArray = newText.match(/[\w'][^\w']/g)
             let newTotalWords = matchArray ? matchArray.length : 0;
-    
+
             currentWords = newTotalWords;
         }
         setDisplayWords(totalWords + currentWords)
@@ -82,38 +90,38 @@ function NoQuote() {
         previousTimeUsed += lastInputTime - restartTime;
         paused = true;
         clearTimeout(timerTimeout);
-        let wpm = previousTimeUsed > 0 ? Math.round((totalWords + currentWords) / previousTimeUsed * 600000) / 10 : ' - -';
+        let wpm = previousTimeUsed > 0 ? Math.round((totalWords + currentWords) / previousTimeUsed * 600000) / 10 : '- -';
         setDisplayWPM(wpm);
         lastInputTime = 0;
         restartTime = 0;
         timerTimeout = null;
     }
-    console.log('initializing no quote')
-    return (
-        <div id="noQuote">
-            <Row className="justify-content-center text-center">
-                <Col></Col>
-                <Col lg={6}>
-                    <Row>
-                        <Col xs={6}>
-                            <h6 className="th">WPM</h6>
-                            <h5>{displayWPM}</h5>
-                        </Col>
-                        <Col xs={6}>
-                            <h6  className="th">Words</h6>
-                            <h5>{displayWords}</h5>
-                        </Col>
-                    </Row>
-                </Col>
-                <Col></Col>
 
-            </Row>
-            <textarea onInput={onInput} onBlur={pauseFunction}></textarea>
-            <textarea id="testing" onInput={() => {
-                console.log('inputing')
-            }} style={{height: "0", width: "0", padding: "0", margin: "0"}}></textarea>
+    return (
+        <div id="noQuote" style={{ height: "calc(100vh - 100px" }}>
+            <h1>Test setting: {test}</h1>
+            <div className="d-flex flex-column" id="noQuoteTopPortion" style={{ height: "100%", paddingBottom: "10px" }}>
+                <Row className="justify-content-center text-center">
+                    <Col></Col>
+                    <Col lg={6}>
+                        <Row>
+                            <Col xs={6}>
+                                <h6 className="th">WPM</h6>
+                                <h5>{displayWPM}</h5>
+                            </Col>
+                            <Col xs={6}>
+                                <h6 className="th">Words</h6>
+                                <h5>{displayWords}</h5>
+                            </Col>
+                        </Row>
+                    </Col>
+                    <Col></Col>
+                </Row>
+                <textarea onInput={onInput} onBlur={pauseFunction}></textarea>
+            </div>
         </div>
     )
 }
+
 
 export default NoQuote;

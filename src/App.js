@@ -1,17 +1,23 @@
 import './App.css';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import React from 'react';
 import M from 'materialize-css'
 import 'materialize-css';
-import Home from './components/Home';
+import Home from './components/Home/Home';
 import About from './components/Ａｂｏｕｔ/About';
 import NoQuote from './components/Ｎｏ　Ｑｕｏｔｅ/NoQuote';
-import Header from './components/Header';
-import Footer from './components/Footer';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+import Setting from './components/Setting/Setting'
 import NumberTypingDisplaySampleText from './components/Ｎｕｍｂｅｒ/Number typing';
+import FullWidthTabs from './test'
+
+
+
 
 function App() {
+  console.log('rendered App')
   let components = [
     <Home />,
     <About />,
@@ -19,9 +25,14 @@ function App() {
     <NumberTypingDisplaySampleText />
   ]
 
+  const [showSetting, setShowSetting] = useState(false)
+  const [currentTab, setCurrentTab] = useState(0)
+  const [setting, setSetting] = useState({})
+
   window.addEventListener('scroll', changeScrollBarColorByScroll)
 
   useEffect(() => {
+    console.log('App used effect')
     changeScrollBarColorByScroll()
     M.Tabs.init(document.querySelector('.tabs'));
   }, [])
@@ -41,15 +52,35 @@ function App() {
 
   return (
     <div id="app">
-      <Header changeScrollBarColorByScroll={changeScrollBarColorByScroll} />
+      <Header
+        changeScrollBarColorByScroll={changeScrollBarColorByScroll}
+        showSetting={showSetting}
+        setShowSetting={setShowSetting}
+        currentTab={currentTab}
+        setCurrentTab={setCurrentTab} 
+        setting={setting}
+        setSetting={setSetting}
+        />
       <div id="pagesContainer" className="container">
         {components.map((element, i) => {
-          return (<div key={i} className={i !== 0 ? "notCurrentTab" : ""}>
-            {element}
+          return (<div
+            key={i}
+          >
+            {currentTab === i && React.cloneElement(element, {
+              settings: setting,
+              setSettings: setSetting
+            })}
           </div>)
         })}
       </div>
       <Footer />
+
+      <Setting
+        showSetting={showSetting}
+        setShowSetting={setShowSetting}
+        setting={setting}
+        setSetting={setSetting}
+      />
     </div>
   );
 }

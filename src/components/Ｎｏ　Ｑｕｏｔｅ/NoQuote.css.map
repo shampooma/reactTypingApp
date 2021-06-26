@@ -1,7 +1,1 @@
-{
-"version": 3,
-"mappings": "AACI,iBAAS;EACL,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,IAAI",
-"sources": ["NoQuote.scss"],
-"names": [],
-"file": "NoQuote.css"
-}
+{"version":3,"sourceRoot":"","sources":["NoQuote.scss"],"names":[],"mappings":"AACI;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;;AAGJ;EACI;IACI;IACA;IACA;IACA;IACA;IACA","file":"NoQuote.css"}

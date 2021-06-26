@@ -5,85 +5,22 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import { withStyles } from "@material-ui/core/styles";
 import './Header.css';
 
 let collapsed;
 let mobileLayout;
 
-const styles = theme => ({
-    indicatorOrigin: {
-        backgroundColor: "#212529"
-    },
-    indicatorNonOrigin: {
-        backgroundColor: "#ffffff"
-    },
-    tabButtonNonOrigin: {
-        maxWidth: "none",
-        width: "100% !important"
-    },
-    tabLabelNonOrigin: {
-        alignItems: "self-start",
-    }
-});
 
 const Header = (props) => {
-    const [tabNumber, setTabNumber] = useState(-1);
+    console.log('Header rendered')
+
     const [originColor, setOriginColor] = useState(true);
     const [displayMobileLayout, setDisplayMobileLayout] = useState(false);
 
-    const { classes, changeScrollBarColorByScroll } = props;
-
-    function toggleCollapseButtonOnClick(currentTabNumber) {
-        if (window.scrollY <= 0 && !collapsed) {
-            setOriginColor(true)
-        } else {
-            setOriginColor(false)
-        }
-        // setDisplayMobileLayout(mobileLayout)
-        if (collapsed) {
-            collapsed = false
-        } else {
-            collapsed = true
-            if (currentTabNumber > -1) {
-                let indicator = document.querySelector('#navbar .MuiTabs-indicator')
-                let currentTab = document.querySelector('#navbar .MuiTabs-flexContainer').childNodes[currentTabNumber]
-
-                indicator.style.height = currentTab.style.height;
-            }
-
-        }
-    }
-
-
-    function changeHeaderBackgroundWithoutUsingHambergar() {
-        if (window.scrollY <= 0 && collapsed) {
-            setOriginColor(true)
-        } else {
-            setOriginColor(false)
-        }
-    }
-
-    function closeHeader(e) {
-        if (!e.target.classList.contains('headermain') && !document.querySelector('.headermain').contains(e.target) && !collapsed && mobileLayout) {
-            document.querySelector('#toggleCollapseButton').click()
-        }
-    }
-
-    function changeTab(e, n) {
-        let pages = document.querySelector('#pagesContainer').childNodes;
-
-        if (!collapsed && mobileLayout) {
-            document.querySelector('#toggleCollapseButton').click()
-        }
-
-        pages[tabNumber + 1].classList.add('notCurrentTab')
-        pages[n + 1].classList.remove('notCurrentTab')
-        setTabNumber(n)
-        changeScrollBarColorByScroll();
-    }
+    const { changeScrollBarColorByScroll, showSetting, setShowSetting, currentTab, setCurrentTab, setting, setSetting } = props;
 
     useEffect(() => {
+        console.log('Header used effect')
         collapsed = true;
         mobileLayout = false;
 
@@ -116,15 +53,49 @@ const Header = (props) => {
         })
     }, [])
 
+
+    function toggleCollapseButtonOnClick(currentTabNumber) {
+        if (window.scrollY <= 0 && !collapsed) {
+            setOriginColor(true)
+        } else {
+            setOriginColor(false)
+        }
+
+        collapsed = !collapsed
+    }
+
+
+    function changeHeaderBackgroundWithoutUsingHambergar() {
+        if (window.scrollY <= 0 && collapsed) {
+            setOriginColor(true)
+        } else {
+            setOriginColor(false)
+        }
+    }
+
+    function closeHeader(e) {
+        if (!e.target.classList.contains('headermain') && !document.querySelector('.headermain').contains(e.target) && !collapsed && mobileLayout) {
+            document.querySelector('#toggleCollapseButton').click()
+        }
+    }
+
+    function changeTab(e, n) {
+        if (!collapsed && mobileLayout) {
+            document.querySelector('#toggleCollapseButton').click()
+        }
+
+        setCurrentTab(n + 1)
+        changeScrollBarColorByScroll();
+    }
     return (
-        <div>
+        <div style={{ height: "70px" }}>
             <Navbar
                 className={"headermain" + (originColor ? "" : " navbar-dark bg-dark")}
                 id="navbar"
                 fixed="top"
                 collapseOnSelect
                 expand="lg"
-                style={{ padding: `10px 10px ${mobileLayout ? "10px" : "0"} 10px` }}>
+                style={{ zIndex: 1, padding: `0 0 ${mobileLayout ? "5px" : "2px"} 0`, }}>
                 <Nav
                     style={{ width: "100%" }}>
                     <Row
@@ -133,7 +104,7 @@ const Header = (props) => {
                         <Col
                             xs={12}
                             lg={2}
-                            style={{ marginBottom: "10px" }}>
+                            style={{ marginBottom: mobileLayout ? "10px" : "0", paddingTop: mobileLayout ? "10px" : "0" }}>
                             <div
                                 className="d-flex justify-content-between">
                                 <Navbar.Brand
@@ -143,7 +114,7 @@ const Header = (props) => {
                                     onClick={() => changeTab(null, -1)}> Home</Navbar.Brand>
                                 <Navbar.Toggle
                                     id="toggleCollapseButton"
-                                    onClick={() => toggleCollapseButtonOnClick(tabNumber)}
+                                    onClick={() => toggleCollapseButtonOnClick(currentTab)}
                                     aria-controls="responsive-navbar-nav" />
                             </div>
                         </Col>
@@ -159,43 +130,53 @@ const Header = (props) => {
                                         {...displayMobileLayout && { orientation: "vertical" }}
                                         style={{ ...(displayMobileLayout && { width: "100%" }) }}
                                         classes={{
-                                            indicator: (originColor ? classes.indicatorOrigin : classes.indicatorNonOrigin)
+                                            indicator: (originColor ? "indicatorOrigin" : "indicatorNonOrigin")
                                         }}
-                                        value={tabNumber > -1 && tabNumber}
+                                        value={currentTab > 0 && currentTab - 1}
                                         onChange={changeTab}>
-                                        {['About', 'No Quote', 'Number Typing'].map(string => {
+                                        {['About', 'No Quote', 'Number Typing'].map((string, i) => {
                                             return (
                                                 <Tab
-                                                    style={{ ...(displayMobileLayout && { color: (originColor ? "#00000000" : "#ffffff") }) }}
-                                                    classes={{
-                                                        root: (displayMobileLayout && classes.tabButtonNonOrigin),
-                                                        wrapper: (displayMobileLayout && classes.tabLabelNonOrigin)
+                                                    key={i}
+                                                    style={{
+                                                        color: (() => {
+                                                            if (displayMobileLayout) {
+                                                                if (originColor) {
+                                                                    return "#00000000"
+                                                                } else {
+                                                                    return "#ffffff"
+                                                                }
+                                                            } else {
+                                                                if (originColor) {
+                                                                    return "#000000"
+                                                                } else {
+                                                                    return "#ffffff"
+                                                                }
+                                                            }
+                                                        })()
                                                     }}
-                                                    label={string} />)
+                                                    classes={{
+                                                        root: (displayMobileLayout && "tabButtonNonOrigin"),
+                                                        wrapper: (displayMobileLayout && "tabLabelNonOrigin")
+                                                    }}
+                                                    label={string}
+                                                />)
                                         })}
                                     </Tabs>
                                 </div>
                             </Navbar.Collapse>
                         </Col>
-                        <Col xs={0} lg={2}></Col>
-                    </Row>
-
-                </Nav>
-            </Navbar>
-            <Navbar className="invisible headermain" collapseOnSelect expand="lg" style={{ padding: "10px 10px 10px 10px" }}>
-                <Nav style={{ width: "100%" }}>
-                    <Row className="justify-content-lg-between" style={{ width: "100%" }}>
-                        <Col xs={12} lg={2} style={{ marginBottom: "10px" }}>
-                            <div className="d-flex justify-content-between">
-                                <Navbar.Brand> Home</Navbar.Brand>
-                                <Navbar.Toggle />
-                            </div>
+                        <Col xs={0} lg={2} className="d-flex align-items-center justify-content-end">
+                            <button onClick={() => {
+                                console.log('nav bar clicked show setting')
+                                setShowSetting(!showSetting)
+                            }}>Setting</button>
                         </Col>
                     </Row>
+
                 </Nav>
             </Navbar>
-
         </div >)
 }
 
-export default withStyles(styles)(Header);;
+export default Header;

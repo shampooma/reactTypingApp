@@ -1,0 +1,30 @@
+.headermain {
+  transition: background-color 0.3s ease;
+  background-color: #00000000;
+  color: #000000;
+  top: 0;
+  z-index: 1;
+  padding: 0;
+}
+.headermain a {
+  padding: 10px !important;
+  border-radius: 3px;
+}
+.headermain a:hover {
+  background-color: #00000033;
+}
+.headermain .indicatorOrigin {
+  background-color: #212529;
+}
+.headermain .indicatorNonOrigin {
+  background-color: #ffffff;
+}
+.headermain .tabButtonNonOrigin {
+  max-width: none;
+  width: 100% !important;
+}
+.headermain .tabLabelNonOrigin {
+  align-items: self-start;
+}
+
+/*# sourceMappingURL=Header.css.map */
