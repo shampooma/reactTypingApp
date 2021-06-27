@@ -45,7 +45,7 @@ function NumberTyping_displaySampleText() {
 
 		//useEffect function 2: press enter
 		function pressEnterGenAndAddOneNumber() {
-			var from1toInfinity = 1;
+			var from1toInfinity = 0;
 			document.body.addEventListener("keydown", function (pressedKey) {
 				
 				if (pressedKey.keyCode === 13) {
@@ -295,8 +295,7 @@ function NumberTyping_displaySampleText() {
 
 
 			<div style={{ position: "relative" }}>
-			<div id="div_displayGeneratedNumber">
-			</div>
+				<div id="div_displayGeneratedNumber"></div>
 			</div>
 			<textarea id="numTextArea"></textarea>
 
