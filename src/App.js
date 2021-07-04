@@ -7,6 +7,9 @@ import 'materialize-css';
 import Home from './components/Home/Home';
 import About from './components/Ａｂｏｕｔ/About';
 import NoQuote from './components/Ｎｏ　Ｑｕｏｔｅ/NoQuote';
+import WebScrape from './components/Ｗｅｂ Ｓｃｒａｐｅ/WebScrape';
+import Quote from './components/Ｑｕｏｔｅ/Quote'
+import Code from './components/Ｃｏｄｅ/Code'
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Setting from './components/Setting/Setting'
@@ -21,8 +24,11 @@ function App() {
   let components = [
     <Home />,
     <About />,
+    <Quote />,
+    <NumberTypingDisplaySampleText />,
+    <Code />,
+    <WebScrape />,
     <NoQuote />,
-    <NumberTypingDisplaySampleText />
   ]
 
   const [showSetting, setShowSetting] = useState(false)

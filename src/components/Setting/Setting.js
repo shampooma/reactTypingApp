@@ -12,16 +12,25 @@ function Setting(props) {
     const { showSetting, setShowSetting, setting, setSetting } = props
     const [currentSettingTab, setCurrentSettingTab] = useState(0)
 
-    let settingNames = ['aboutSetting', 'noQuoteSetting', 'numberTypingSetting']
+    let settingNames = [
+        'aboutSetting', 
+        'quoteSetting',
+        'numberTypingSetting',
+        'codeSetting',
+        'webScrapSetting',
+        'noQuoteSetting', 
+    ]
 
     useEffect(async () => {
         console.log('setting used effect')
         let currentSetting = {}
         await Promise.all([
             import('../Ａｂｏｕｔ/About'),
-            import('../Ｎｏ　Ｑｕｏｔｅ/NoQuote'),
+            import('../Ｑｕｏｔｅ/Quote'),
             import('../Ｎｕｍｂｅｒ/Number typing'),
-            // import('../Ｓｃｒａｐ　Ｗｅｂ/Body_ScrapeWeb')
+            import('../Ｃｏｄｅ/Code'),
+            import('../Ｗｅｂ Ｓｃｒａｐｅ/WebScrape'),
+            import('../Ｎｏ　Ｑｕｏｔｅ/NoQuote'),
         ])
             .then(array => {
                 array.forEach((obj, i) => {

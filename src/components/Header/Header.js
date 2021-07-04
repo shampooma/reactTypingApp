@@ -134,7 +134,7 @@ const Header = (props) => {
                                         }}
                                         value={currentTab > 0 && currentTab - 1}
                                         onChange={changeTab}>
-                                        {['About', 'No Quote', 'Number Typing'].map((string, i) => {
+                                        {['About', 'English Typing', 'Number Typing', 'Code Typing', 'Web Scrap Typing', 'No Quote'].map((string, i) => {
                                             return (
                                                 <Tab
                                                     key={i}

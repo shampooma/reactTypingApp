@@ -98,8 +98,7 @@ function NoQuote(props) {
     }
 
     return (
-        <div id="noQuote" style={{ height: "calc(100vh - 100px" }}>
-            <h1>Test setting: {test}</h1>
+        <div id="noQuote" style={{ height: "calc(100vh - 70px" }}>
             <div className="d-flex flex-column" id="noQuoteTopPortion" style={{ height: "100%", paddingBottom: "10px" }}>
                 <Row className="justify-content-center text-center">
                     <Col></Col>
