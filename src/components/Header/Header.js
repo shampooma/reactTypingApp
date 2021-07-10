@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import { Gear } from 'react-bootstrap-icons';
 import './Header.css';
 
 let collapsed;
@@ -80,11 +81,17 @@ const Header = (props) => {
     }
 
     function changeTab(e, n) {
+
         if (!collapsed && mobileLayout) {
             document.querySelector('#toggleCollapseButton').click()
         }
+        console.log(e.target.innerText)
 
-        setCurrentTab(n + 1)
+        if (e.target.innerText == "Setting") {
+            setShowSetting(!showSetting)
+        } else {
+            setCurrentTab(n + 1)
+        }
         changeScrollBarColorByScroll();
     }
     return (
@@ -121,59 +128,88 @@ const Header = (props) => {
                         <Col
                             xs={12}
                             lg={8}>
+                            <div
+                                className="d-flex flex-column flex-lg-row justify-content-center"
+                                style={{ width: "100%" }}>
+                                <Tabs
+                                    style={{ ...(displayMobileLayout && { display: "none" }) }}
+                                    classes={{
+                                        indicator: (originColor ? "indicatorOrigin" : "indicatorNonOrigin")
+                                    }}
+                                    value={currentTab > 0 && currentTab - 1}
+                                    onChange={changeTab}
+                                    variant="scrollable"
+                                    scrollButtons="auto">
+                                    {['About', 'English Typing', 'Number Typing', 'Code Typing', 'Web Scrap Typing', 'No Quote'].map((string, i) => {
+                                        return (
+                                            <Tab
+                                                key={i}
+                                                style={{
+                                                    color: (() => {
+
+                                                        if (originColor) {
+                                                            return "#000000"
+                                                        } else {
+                                                            return "#ffffff"
+                                                        }
+
+                                                    })(),
+                                                    textTransform: "none"
+                                                }}
+                                                classes={{
+                                                    root: (displayMobileLayout && "tabButtonNonOrigin"),
+                                                    wrapper: (displayMobileLayout && "tabLabelNonOrigin")
+                                                }}
+                                                label={string}
+                                            />)
+                                    })}
+                                </Tabs>
+                            </div>
+
                             <Navbar.Collapse
                                 id="responsive-navbar-nav">
-                                <div
-                                    className="d-flex flex-column flex-lg-row justify-content-center"
-                                    style={{ width: "100%" }}>
-                                    <Tabs
-                                        {...displayMobileLayout && { orientation: "vertical" }}
-                                        style={{ ...(displayMobileLayout && { width: "100%" }) }}
-                                        classes={{
-                                            indicator: (originColor ? "indicatorOrigin" : "indicatorNonOrigin")
-                                        }}
-                                        value={currentTab > 0 && currentTab - 1}
-                                        onChange={changeTab}>
-                                        {['About', 'English Typing', 'Number Typing', 'Code Typing', 'Web Scrap Typing', 'No Quote'].map((string, i) => {
-                                            return (
-                                                <Tab
-                                                    key={i}
-                                                    style={{
-                                                        color: (() => {
-                                                            if (displayMobileLayout) {
-                                                                if (originColor) {
-                                                                    return "#00000000"
-                                                                } else {
-                                                                    return "#ffffff"
-                                                                }
-                                                            } else {
-                                                                if (originColor) {
-                                                                    return "#000000"
-                                                                } else {
-                                                                    return "#ffffff"
-                                                                }
-                                                            }
-                                                        })()
-                                                    }}
-                                                    classes={{
-                                                        root: (displayMobileLayout && "tabButtonNonOrigin"),
-                                                        wrapper: (displayMobileLayout && "tabLabelNonOrigin")
-                                                    }}
-                                                    label={string}
-                                                />)
-                                        })}
-                                    </Tabs>
-                                </div>
+                                <Tabs
+                                    orientation="vertical"
+                                    style={{ width: "100%", ...(!displayMobileLayout && { display: "none" }) }}
+                                    classes={{
+                                        indicator: (originColor ? "indicatorOrigin" : "indicatorNonOrigin")
+                                    }}
+                                    value={currentTab > 0 && currentTab - 1}
+                                    onChange={changeTab}
+                                    variant="scrollable"
+                                    scrollButtons="auto">
+                                    {['About', 'English Typing', 'Number Typing', 'Code Typing', 'Web Scrap Typing', 'No Quote', 'Setting'].map((string, i) => {
+                                        return (
+                                            <Tab
+                                                key={i}
+                                                style={{
+                                                    color: (() => {
+                                                        if (originColor) {
+                                                            return "#00000000"
+                                                        } else {
+                                                            return "#ffffff"
+                                                        }
+                                                    })(),
+                                                    textTransform: "none"
+                                                }}
+                                                classes={{
+                                                    root: (displayMobileLayout && "tabButtonNonOrigin"),
+                                                    wrapper: (displayMobileLayout && "tabLabelNonOrigin")
+                                                }}
+                                                label={string}
+                                            />)
+                                    })}
+                                </Tabs>
                             </Navbar.Collapse>
                         </Col>
                         <Col xs={0} lg={2} className="d-flex align-items-center justify-content-end">
-                            <button onClick={() => {
-                                console.log('nav bar clicked show setting')
+                            {/* Show only when is not mobile layout */}
+                            {displayMobileLayout ? null : <Gear style={{ cursor: "pointer" }} onClick={() => {
                                 setShowSetting(!showSetting)
-                            }}>Setting</button>
+                            }} />}
+
                         </Col>
                     </Row>
-
                 </Nav>
             </Navbar>
         </div >)
