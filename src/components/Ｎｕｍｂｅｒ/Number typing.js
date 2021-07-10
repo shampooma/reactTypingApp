@@ -98,7 +98,7 @@ function NumberTyping_displaySampleText() {
 			var Ended = false;
 			var StartTime;
 			var TimeInterval;
-			var HightLightColor = "#33333333";
+			var HightLightColor = "grey";
 			var red = "#ff0000";
 			var green = "#00bf44";
 			var black = "#000000";
@@ -120,7 +120,10 @@ function NumberTyping_displaySampleText() {
 			Error.textContent = "123";
 			putNumOnSampleText.innerHTML = insert;
 			putNumOnSampleText.style.whiteSpace = "pre-wrap";
-			putNumOnSampleText.children[HighLightElementRow * 2].children[HighLightElementColumn].style.backgroundColor = HightLightColor;
+			putNumOnSampleText.children[HighLightElementRow * 2].children[HighLightElementColumn].style.color = HightLightColor;
+			///test
+			putNumOnSampleText.children[HighLightElementRow * 2].children[HighLightElementColumn].style.fontSize = "60px";
+			//
 			textArea.value = "";
 			historyValue = "";
 			//scroll(0);
@@ -134,6 +137,7 @@ function NumberTyping_displaySampleText() {
 					}
 					if (SampleTextArray[HighLightElementRow] && SampleTextArray[HighLightElementRow][HighLightElementColumn]) {
 						putNumOnSampleText.children[HighLightElementRow * 2].children[HighLightElementColumn].style.backgroundColor = "";
+						putNumOnSampleText.children[HighLightElementRow * 2].children[HighLightElementColumn].style.fontSize = "49px";
 					} else {
 							putNumOnSampleText.children[HighLightElementRow * 2].removeChild(putNumOnSampleText.children[HighLightElementRow * 2].children[HighLightElementColumn]);
 					}
@@ -165,13 +169,15 @@ function NumberTyping_displaySampleText() {
 						HighLightElementRow = currentValueArray.length - 1;
 						HighLightElementColumn = currentValueArray ? currentValueArray[currentValueArray.length - 1] ? currentValueArray[currentValueArray.length - 1].length : 0 : 0;
 						if (putNumOnSampleText.children[HighLightElementRow * 2] && putNumOnSampleText.children[HighLightElementRow * 2].children[HighLightElementColumn]) {
-							putNumOnSampleText.children[HighLightElementRow * 2].children[HighLightElementColumn].style.backgroundColor = HightLightColor;
+							putNumOnSampleText.children[HighLightElementRow * 2].children[HighLightElementColumn].style.color = HightLightColor;
+							putNumOnSampleText.children[HighLightElementRow * 2].children[HighLightElementColumn].style.fontSize = "60px";
 							if (!SampleTextArray[HighLightElementRow] || !SampleTextArray[HighLightElementRow][HighLightElementColumn]) {
 								putNumOnSampleText.children[HighLightElementRow * 2].children[HighLightElementColumn].innerText = " ";
 							}
 						} else {
 							var newElement = document.createElement("span");
-							newElement.style.backgroundColor = HightLightColor;
+							newElement.style.color = HightLightColor;
+							newElement.style.fontSize = "60px";
 							newElement.innerText = " ";
 							putNumOnSampleText.children[HighLightElementRow * 2].appendChild(newElement);
 						}
