@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/reactTypingApp/static/css/main.835f39f4.chunk.css",
+    "main.js": "/reactTypingApp/static/js/main.4c293c48.chunk.js",
+    "main.js.map": "/reactTypingApp/static/js/main.4c293c48.chunk.js.map",
+    "runtime-main.js": "/reactTypingApp/static/js/runtime-main.6b7b891d.js",
+    "runtime-main.js.map": "/reactTypingApp/static/js/runtime-main.6b7b891d.js.map",
+    "static/css/2.61b4cb56.chunk.css": "/reactTypingApp/static/css/2.61b4cb56.chunk.css",
+    "static/js/2.6da1f2ef.chunk.js": "/reactTypingApp/static/js/2.6da1f2ef.chunk.js",
+    "static/js/2.6da1f2ef.chunk.js.map": "/reactTypingApp/static/js/2.6da1f2ef.chunk.js.map",
+    "static/js/3.82956792.chunk.js": "/reactTypingApp/static/js/3.82956792.chunk.js",
+    "static/js/3.82956792.chunk.js.map": "/reactTypingApp/static/js/3.82956792.chunk.js.map",
+    "index.html": "/reactTypingApp/index.html",
+    "static/css/2.61b4cb56.chunk.css.map": "/reactTypingApp/static/css/2.61b4cb56.chunk.css.map",
+    "static/css/main.835f39f4.chunk.css.map": "/reactTypingApp/static/css/main.835f39f4.chunk.css.map",
+    "static/js/2.6da1f2ef.chunk.js.LICENSE.txt": "/reactTypingApp/static/js/2.6da1f2ef.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6b7b891d.js",
+    "static/css/2.61b4cb56.chunk.css",
+    "static/js/2.6da1f2ef.chunk.js",
+    "static/css/main.835f39f4.chunk.css",
+    "static/js/main.4c293c48.chunk.js"
+  ]
+}
