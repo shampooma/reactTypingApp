@@ -1,5 +1,4 @@
 import './App.css';
-
 import { useEffect, useState } from 'react';
 import React from 'react';
 import M from 'materialize-css'
@@ -14,10 +13,6 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Setting from './components/Setting/Setting'
 import NumberTypingDisplaySampleText from './components/Ｎｕｍｂｅｒ/Number typing';
-import FullWidthTabs from './test'
-
-
-
 
 function App() {
   console.log('rendered App')

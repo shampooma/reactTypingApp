@@ -1,0 +1,24 @@
+#webScrape #webScrapTextCover {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 3px;
+  z-index: 1;
+}
+#webScrape #webScrapTextCover:hover {
+  background-color: #33333311;
+}
+#webScrape #webScrapeSampleTextIndicator {
+  position: absolute;
+  z-index: 1;
+}
+#webScrape #webScrapeSampleTextIndicator.showTextIndicator {
+  background-color: #33333322;
+}
+#webScrape #webScrapeSampleTextIndicator.hideTextIndicator {
+  background-color: #00000000;
+}
+
+/*# sourceMappingURL=WebScrape.css.map */

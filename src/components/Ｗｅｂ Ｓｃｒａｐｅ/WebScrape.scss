@@ -1,0 +1,29 @@
+#webScrape {
+  #webScrapTextCover {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 3px;
+    z-index: 1;
+    // background-color: #333333ff;
+
+    &:hover {
+      background-color: #33333311;
+    }
+  }
+
+  #webScrapeSampleTextIndicator {
+    position: absolute;
+    z-index: 1;
+
+    &.showTextIndicator {
+      background-color: #33333322;
+    }
+
+    &.hideTextIndicator {
+      background-color: #00000000;
+    }
+  }
+}

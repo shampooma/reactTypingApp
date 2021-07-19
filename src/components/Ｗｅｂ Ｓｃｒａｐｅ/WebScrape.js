@@ -1,18 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Head from './Head';
 import Body from './Body';
 
 function WebScrape() {
-    const [text, setText] = useState([]);
+    const [textArray, setTextArray] = useState('Please enter the URL');
 
     return (<div id="webScrape">
         <Head
-            text={text}
-            setText={setText}
+            textArray={textArray}
+            setTextArray={setTextArray}
         />
         <Body
-            text={text}
-            setText={setText}
+            textArray={textArray}
+            setTextArray={setTextArray}
         />
     </div>)
 }
